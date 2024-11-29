@@ -7,8 +7,8 @@ import com.assignment.dto.UserDTO;
 import com.assignment.entity.User;
 import com.assignment.util.PasswordEncrypt;
 import com.assignment.util.PasswordVerifier;
-import com.assignment.util.TextField;
 import com.assignment.util.Regex;
+import com.assignment.util.TextField;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
@@ -104,7 +104,6 @@ public class UserController implements Initializable {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-
         setCellValueFactory();
         generateNextUserId();
 
@@ -126,7 +125,6 @@ public class UserController implements Initializable {
             throw new RuntimeException(e);
         }
         txtuserid.setText(nextId);
-
     }
 
     private void setCellValueFactory() {
@@ -141,8 +139,8 @@ public class UserController implements Initializable {
         observableList = FXCollections.observableArrayList();
         List<UserDTO> allUser = userBO.getAllUser();
 
-        for (UserDTO userDTO : allUser){
-            observableList.add(new User(userDTO.getUserid(),userDTO.getUsername(),userDTO.getPassword(),userDTO.getEmail(),userDTO.getRole()));
+        for (UserDTO userDTO : allUser) {
+            observableList.add(new User(userDTO.getUserid(), userDTO.getUsername(), userDTO.getPassword(), userDTO.getEmail(), userDTO.getRole()));
         }
         tbluser.setItems(observableList);
     }
@@ -157,10 +155,11 @@ public class UserController implements Initializable {
         String role = (String) txtrole.getValue();
 
         int validationCode;
+
         if (id.isEmpty() || name.isEmpty() || password.isEmpty() || repassword.isEmpty() || email.isEmpty() || role == null) {
             new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
             return;
-        }else {
+        } else {
             validationCode = isValid();
         }
         switch (validationCode) {
@@ -189,7 +188,6 @@ public class UserController implements Initializable {
                 }
             }
         }
-
     }
 
     private void clearTextFileds() {
@@ -206,7 +204,7 @@ public class UserController implements Initializable {
 
     @FXML
     void btnclearOnAction(ActionEvent event) {
-           clearTextFileds();
+        clearTextFileds();
     }
 
     @FXML
@@ -246,13 +244,13 @@ public class UserController implements Initializable {
         String name = txtusername.getText().trim();
         String email = txtemail.getText().trim();
         String role = txtrole.getValue();
-        User userById ;
+        User userById;
 
         int validationCode;
         if (userid.isEmpty() || name.isEmpty() || email.isEmpty() || role == null) {
             new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
             return;
-        }else {
+        } else {
             validationCode = isValid1();
         }
         switch (validationCode) {
@@ -265,8 +263,6 @@ public class UserController implements Initializable {
                 } else {
                     new Alert(Alert.AlertType.ERROR, "Failed to update user! Please try again.").show();
                 }
-
-
                 clearTextFileds();
                 getAll();
             }
@@ -299,7 +295,6 @@ public class UserController implements Initializable {
         txtrepassword.setVisible(false);
     }
 
-
     public void rowOnMouseClicked(MouseEvent mouseEvent) {
         Integer index = tbluser.getSelectionModel().getSelectedIndex();
         if (index <= -1) {
@@ -319,33 +314,32 @@ public class UserController implements Initializable {
 
     @FXML
     void txtemailOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(TextField.EMAIL,txtemail);
+        Regex.setTextColor(TextField.EMAIL, txtemail);
     }
 
     @FXML
     void txtpassword1OnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(TextField.PASSWORD,txtpassword);
+        Regex.setTextColor(TextField.PASSWORD, txtpassword);
     }
 
     @FXML
     void txtrepassword1OnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(TextField.PASSWORD,txtrepassword);
+        Regex.setTextColor(TextField.PASSWORD, txtrepassword);
     }
 
     @FXML
     void txtsearchOnKeyReleased(KeyEvent event) {
-
     }
 
     @FXML
     void txtuseridOnKeyReleased(KeyEvent event) {
-
     }
 
     @FXML
     void txtusernameOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(TextField.USERNAME,txtusername);
+        Regex.setTextColor(TextField.USERNAME, txtusername);
     }
+
     public int isValid() {
         if (!Regex.setTextColor(TextField.USERNAME, txtusername)) return 1;
         if (!Regex.setTextColor(TextField.EMAIL, txtemail)) return 2;
@@ -353,6 +347,7 @@ public class UserController implements Initializable {
         if (!Regex.setTextColor(TextField.PASSWORD, txtrepassword)) return 4;
         return 0;
     }
+
     public int isValid1() {
         if (!Regex.setTextColor(TextField.USERNAME, txtusername)) return 1;
         if (!Regex.setTextColor(TextField.EMAIL, txtemail)) return 2;

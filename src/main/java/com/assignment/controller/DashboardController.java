@@ -18,6 +18,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.IOException;
 import java.net.URL;
@@ -27,40 +29,41 @@ import java.util.ResourceBundle;
 public class DashboardController implements Initializable {
 
     @FXML
-    private JFXButton btncourses;
+    private JFXButton btnCourses;
 
     @FXML
-    private JFXButton btndashboard;
+    private JFXButton btnDashboard;
 
     @FXML
-    private JFXButton btnenrollment;
+    private JFXButton btnEnrollment;
 
     @FXML
-    private JFXButton btnlogout;
+    private JFXButton btnLogOut;
 
     @FXML
-    private JFXButton btnpayments;
+    private JFXButton btnPayments;
 
     @FXML
-    private JFXButton btnseeprofile;
+    private JFXButton btnProfile;
 
     @FXML
-    private JFXButton btnstudent;
+    private JFXButton btnStudent;
 
     @FXML
-    private JFXButton btnuser;
+    private JFXButton btnUser;
 
     @FXML
-    private AnchorPane mainform;
+    private AnchorPane mainForm;
 
     @FXML
-    private JFXTextField txtcoursescount;
+    private JFXTextField txtCoursesCount;
 
     @FXML
-    private JFXTextField txtenrollmentcount;
+    private JFXTextField txtEnrollmentCount;
 
     @FXML
-    private JFXTextField txtstudentcount;
+    private JFXTextField txtStudentCount;
+
     ArrayList<Node> originalMainformChildren;
     StudentBo studentBo = (StudentBoImpl) BoFactory.getBoFactory().getBo(BoFactory.BoType.Student);
     CourseBo courseBo = (CourseBoImpl) BoFactory.getBoFactory().getBo(BoFactory.BoType.Course);
@@ -68,17 +71,14 @@ public class DashboardController implements Initializable {
 
 
     private int role;
+
+    @Setter
+    @Getter
     private String userid;
+
     public void setRole(int role) {
         this.role = role;
         applyRoleBasedDecisions();
-    }
-    public void setUserid(String userid) {
-        this.userid = userid;
-    }
-
-    public String getUserid(){
-        return this.userid;
     }
 
     private void applyRoleBasedDecisions() {
@@ -95,52 +95,52 @@ public class DashboardController implements Initializable {
     }
 
     private void enableAllButtons() {
-        btncourses.setVisible(true);
-        btndashboard.setVisible(true);
-        btnenrollment.setVisible(true);
-        btnlogout.setVisible(true);
-        btnpayments.setVisible(true);
-        btnseeprofile.setVisible(true);
-        btnstudent.setVisible(true);
-        btnuser.setVisible(true);
+        btnCourses.setVisible(true);
+        btnDashboard.setVisible(true);
+        btnEnrollment.setVisible(true);
+        btnLogOut.setVisible(true);
+        btnPayments.setVisible(true);
+        btnProfile.setVisible(true);
+        btnStudent.setVisible(true);
+        btnUser.setVisible(true);
     }
 
-
     private void restrictToCoordinatorPermissions() {
-        btncourses.setVisible(false);
-        btndashboard.setVisible(true);
-        btnlogout.setVisible(true);
-        btnpayments.setVisible(false);
-        btnseeprofile.setVisible(true);
-        btnstudent.setVisible(true);
-        btnenrollment.setVisible(true);
-        btnuser.setVisible(false);
+        btnCourses.setVisible(false);
+        btnDashboard.setVisible(true);
+        btnLogOut.setVisible(true);
+        btnPayments.setVisible(false);
+        btnProfile.setVisible(true);
+        btnStudent.setVisible(true);
+        btnEnrollment.setVisible(true);
+        btnUser.setVisible(false);
     }
 
     private void disableAllButtons() {
-        btncourses.setVisible(false);
-        btndashboard.setVisible(false);
-        btnenrollment.setVisible(false);
-        btnlogout.setVisible(false);
-        btnpayments.setVisible(false);
-        btnseeprofile.setVisible(false);
-        btnstudent.setVisible(false);
-        btnuser.setVisible(false);
-    }
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle){
-         originalMainformChildren = new ArrayList<>(mainform.getChildren());
-         setcounts();
+        btnCourses.setVisible(false);
+        btnDashboard.setVisible(false);
+        btnEnrollment.setVisible(false);
+        btnLogOut.setVisible(false);
+        btnPayments.setVisible(false);
+        btnProfile.setVisible(false);
+        btnStudent.setVisible(false);
+        btnUser.setVisible(false);
     }
 
-    public void setcounts(){
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        originalMainformChildren = new ArrayList<>(mainForm.getChildren());
+        setcounts();
+    }
+
+    public void setcounts() {
         try {
             int coursesCount = courseBo.getCourseCount();
             int enrollmentCount = enrollmentBo.getEnrollmentCount();
             int studentCount = studentBo.getStudentCount();
-            txtcoursescount.setText(String.valueOf(coursesCount));
-            txtenrollmentcount.setText(String.valueOf(enrollmentCount));
-            txtstudentcount.setText(String.valueOf(studentCount));
+            txtCoursesCount.setText(String.valueOf(coursesCount));
+            txtEnrollmentCount.setText(String.valueOf(enrollmentCount));
+            txtStudentCount.setText(String.valueOf(studentCount));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -153,7 +153,7 @@ public class DashboardController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/courseForm.fxml"));
             AnchorPane coursesPane = loader.load();
-            mainform.getChildren().setAll(coursesPane);
+            mainForm.getChildren().setAll(coursesPane);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -163,7 +163,7 @@ public class DashboardController implements Initializable {
     void btndashboardOnAction(ActionEvent event) throws IOException {
         try {
             setcounts();
-            mainform.getChildren().setAll(originalMainformChildren);
+            mainForm.getChildren().setAll(originalMainformChildren);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -174,7 +174,7 @@ public class DashboardController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/enrollmentForm.fxml"));
             AnchorPane coursesPane = loader.load();
-            mainform.getChildren().setAll(coursesPane);
+            mainForm.getChildren().setAll(coursesPane);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -182,7 +182,7 @@ public class DashboardController implements Initializable {
 
     @FXML
     void btnlogoutOnAction(ActionEvent event) throws IOException {
-        mainform.getScene().getWindow().hide();
+        mainForm.getScene().getWindow().hide();
         Parent root = FXMLLoader.load(getClass().getResource("/view/loginForm.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -195,18 +195,18 @@ public class DashboardController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/paymentForm.fxml"));
             AnchorPane coursesPane = loader.load();
-            mainform.getChildren().setAll(coursesPane);
+            mainForm.getChildren().setAll(coursesPane);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    void btnseeprofileOnAction(ActionEvent event){
+    void btnseeprofileOnAction(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/profileForm.fxml"));
             AnchorPane profilePane = loader.load();
-            mainform.getChildren().setAll(profilePane);
+            mainForm.getChildren().setAll(profilePane);
             ProfileController profileController = loader.getController();
             profileController.setUserid(getUserid());
         } catch (IOException e) {
@@ -219,7 +219,7 @@ public class DashboardController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/studentForm.fxml"));
             AnchorPane coursesPane = loader.load();
-            mainform.getChildren().setAll(coursesPane);
+            mainForm.getChildren().setAll(coursesPane);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -230,11 +230,9 @@ public class DashboardController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/userForm.fxml"));
             AnchorPane coursesPane = loader.load();
-            mainform.getChildren().setAll(coursesPane);
+            mainForm.getChildren().setAll(coursesPane);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-
 }

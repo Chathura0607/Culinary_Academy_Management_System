@@ -19,13 +19,13 @@ public class LoadingFormController implements Initializable {
 
     @FXML
     private AnchorPane lodingform;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         Timeline timeline = new Timeline();
         KeyFrame keyFrame1 = new KeyFrame(Duration.millis(4000), actionEvent -> {
             System.out.println("Initializing Application....");
-            System.out.println("Welcome to Culinary System v1.0.0");
         });
 
         timeline.getKeyFrames().addAll(keyFrame1);
@@ -44,5 +44,4 @@ public class LoadingFormController implements Initializable {
             }
         });
     }
-
 }

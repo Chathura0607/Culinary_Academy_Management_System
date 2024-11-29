@@ -90,7 +90,6 @@ public class CourseController implements Initializable {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-
         setCellValueFactory();
         generateNextUserId();
     }
@@ -120,8 +119,8 @@ public class CourseController implements Initializable {
         observableList = FXCollections.observableArrayList();
         List<CourseDTO> allCourse = courseBo.getAllCourse();
 
-        for (CourseDTO courseDTO: allCourse){
-            observableList.add(new CourseTm(courseDTO.getCid(),courseDTO.getCoursename(),courseDTO.getDuration(),courseDTO.getFee()));
+        for (CourseDTO courseDTO : allCourse) {
+            observableList.add(new CourseTm(courseDTO.getCid(), courseDTO.getCoursename(), courseDTO.getDuration(), courseDTO.getFee()));
         }
         tblcourse.setItems(observableList);
     }
@@ -133,12 +132,11 @@ public class CourseController implements Initializable {
         String duration = txtduration.getText();
         Double fees = Double.valueOf(txtfees.getText());
 
-
         int validationCode;
         if (id.isEmpty() || name.isEmpty() || duration.isEmpty() || fees == null) {
             new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
             return;
-        }else {
+        } else {
             validationCode = isValid();
         }
         switch (validationCode) {
@@ -146,7 +144,7 @@ public class CourseController implements Initializable {
             case 2 -> new Alert(Alert.AlertType.ERROR, "Invalid duration!").show();
             case 3 -> new Alert(Alert.AlertType.ERROR, "Invalid fees!").show();
             default -> {
-                if (courseBo.CourseIdExists(id)){
+                if (courseBo.CourseIdExists(id)) {
                     new Alert(Alert.AlertType.ERROR, "Course ID " + id + " already exists!").show();
                     return;
                 }
@@ -227,7 +225,7 @@ public class CourseController implements Initializable {
         if (ID.isEmpty() || name.isEmpty() || duration.isEmpty() || fees == null) {
             new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
             return;
-        }else {
+        } else {
             validationCode = isValid();
         }
         switch (validationCode) {
@@ -261,22 +259,21 @@ public class CourseController implements Initializable {
 
     @FXML
     void txtcoursenameOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(TextField.NAME,txtcoursename);
+        Regex.setTextColor(TextField.NAME, txtcoursename);
     }
 
     @FXML
     void txtdurationOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(TextField.DURATION,txtduration);
+        Regex.setTextColor(TextField.DURATION, txtduration);
     }
 
     @FXML
     void txtfeesOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(TextField.PRICE,txtfees);
+        Regex.setTextColor(TextField.PRICE, txtfees);
     }
 
     @FXML
     void txtscourseidOnKeyReleased(KeyEvent event) {
-
     }
 
     public int isValid() {

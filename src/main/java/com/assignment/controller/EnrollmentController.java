@@ -46,6 +46,7 @@ public class EnrollmentController implements Initializable {
 
     @FXML
     private JFXButton btndelete;
+
     @FXML
     private JFXButton btnupdate;
 
@@ -54,6 +55,7 @@ public class EnrollmentController implements Initializable {
 
     @FXML
     private JFXButton btnsearchstudent;
+
     @FXML
     private JFXTextField txtsearchenrollment;
 
@@ -86,6 +88,7 @@ public class EnrollmentController implements Initializable {
 
     @FXML
     private AnchorPane enrollmentform;
+
     @FXML
     private JFXButton btnsearchenrollment;
 
@@ -125,14 +128,11 @@ public class EnrollmentController implements Initializable {
     @FXML
     private JFXTextField txtupfrontpayment;
 
-
     ObservableList<EnrollmentTm> observableList;
     String ID;
     EnrollmentBo enrollmentBo = (EnrollmentBo) BoFactory.getBoFactory().getBo(BoFactory.BoType.Enrollment);
     StudentBo studentBo = (StudentBoImpl) BoFactory.getBoFactory().getBo(BoFactory.BoType.Student);
     CourseBo courseBo = (CourseBoImpl) BoFactory.getBoFactory().getBo(BoFactory.BoType.Course);
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -143,14 +143,9 @@ public class EnrollmentController implements Initializable {
             getAll();
             loadStudentIds();
             loadCourseIds();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
         setCellValueFactory();
         generateNextUserId();
     }
@@ -165,11 +160,7 @@ public class EnrollmentController implements Initializable {
         String nextId = null;
         try {
             nextId = enrollmentBo.generateNewEnrollmentID();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
+        } catch (SQLException | ClassNotFoundException | IOException e) {
             throw new RuntimeException(e);
         }
         txtenrollmentid.setText(nextId);
@@ -192,9 +183,9 @@ public class EnrollmentController implements Initializable {
         observableList = FXCollections.observableArrayList();
         List<EnrollmentDTO> allenrollment = enrollmentBo.getAllEnrollment();
 
-        for (EnrollmentDTO enrollmentDTO : allenrollment){
-            observableList.add(new EnrollmentTm(enrollmentDTO.getEid(),enrollmentDTO.getSid(),enrollmentDTO.getStudentname(),enrollmentDTO.getCid(),enrollmentDTO.getCoursename(),enrollmentDTO.getDate(),enrollmentDTO.getUpfrontpayment(),enrollmentDTO.getRemainingfee(),enrollmentDTO.getComment()));
-        tblenrollment.setItems(observableList);
+        for (EnrollmentDTO enrollmentDTO : allenrollment) {
+            observableList.add(new EnrollmentTm(enrollmentDTO.getEid(), enrollmentDTO.getSid(), enrollmentDTO.getStudentname(), enrollmentDTO.getCid(), enrollmentDTO.getCoursename(), enrollmentDTO.getDate(), enrollmentDTO.getUpfrontpayment(), enrollmentDTO.getRemainingfee(), enrollmentDTO.getComment()));
+            tblenrollment.setItems(observableList);
         }
     }
 
@@ -240,8 +231,6 @@ public class EnrollmentController implements Initializable {
                 System.out.println("Course Name: " + studentName);
 
                 txtstudentname.setText(studentName);
-
-
             } else {
                 System.out.println("Student not found for ID: " + selectedStudent);
             }
@@ -263,17 +252,19 @@ public class EnrollmentController implements Initializable {
         String comment = txtcomment.getText();
 
         int validationCode;
-        if (id.isEmpty() || sid.isEmpty() || studentname.isEmpty() ||cid.isEmpty() ||coursename.isEmpty() ||date == null ||totalfee == null || upfrontpayment == null ||comment.isEmpty()) {
+
+        if (id.isEmpty() || sid.isEmpty() || studentname.isEmpty() || cid.isEmpty() || coursename.isEmpty() || date == null || totalfee == null || upfrontpayment == null || comment.isEmpty()) {
             new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
             return;
-        }else {
+        } else {
             validationCode = isValid();
         }
+
         switch (validationCode) {
             case 1 -> new Alert(Alert.AlertType.ERROR, "Invalid comment!").show();
             case 2 -> new Alert(Alert.AlertType.ERROR, "Invalid upfrontpayment!").show();
             default -> {
-                if (enrollmentBo.EnrollmentIdExists(id)){
+                if (enrollmentBo.EnrollmentIdExists(id)) {
                     new Alert(Alert.AlertType.ERROR, "Enrollment ID " + id + " already exists!").show();
                     return;
                 }
@@ -352,10 +343,10 @@ public class EnrollmentController implements Initializable {
         Double newremainfeecalculate = newremainfeecalculate(enrollmentById, upfrontpayment);
         String comment = txtcomment.getText();
         int validationCode;
-        if (id.isEmpty() || sid.isEmpty() || studentname.isEmpty() ||cid.isEmpty() ||coursename.isEmpty() ||date == null || upfrontpayment == null ||comment.isEmpty()) {
+        if (id.isEmpty() || sid.isEmpty() || studentname.isEmpty() || cid.isEmpty() || coursename.isEmpty() || date == null || upfrontpayment == null || comment.isEmpty()) {
             new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
             return;
-        }else {
+        } else {
             validationCode = isValid();
         }
         switch (validationCode) {
@@ -376,7 +367,7 @@ public class EnrollmentController implements Initializable {
         }
     }
 
-    private Double newremainfeecalculate(Enrollment enrollment,Double newupfrontpayment) {
+    private Double newremainfeecalculate(Enrollment enrollment, Double newupfrontpayment) {
         Double upfrontpayment = enrollment.getUpfrontpayment();
         Double remainingfee = enrollment.getRemainingfee();
         double fee = (remainingfee + upfrontpayment) - newupfrontpayment;
@@ -408,10 +399,11 @@ public class EnrollmentController implements Initializable {
         }
         tblenrollment.setItems(filteredList);
     }
+
     @FXML
     void txtsearchenrollmentOnAction(ActionEvent event) {
-
     }
+
     @FXML
     void btnsearchsenrollmentOnAction(ActionEvent event) {
         String searchText = txtsearchenrollment.getText().toLowerCase();
@@ -446,17 +438,17 @@ public class EnrollmentController implements Initializable {
 
     @FXML
     void txtcommentOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(TextField.NAME,txtcomment);
+        Regex.setTextColor(TextField.NAME, txtcomment);
     }
 
     @FXML
     void txtupfrontpaymentOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(TextField.PRICE,txtupfrontpayment);
+        Regex.setTextColor(TextField.PRICE, txtupfrontpayment);
     }
+
     public int isValid() {
         if (!Regex.setTextColor(TextField.NAME, txtcomment)) return 1;
         if (!Regex.setTextColor(TextField.PRICE, txtupfrontpayment)) return 2;
         return 0;
     }
-
 }

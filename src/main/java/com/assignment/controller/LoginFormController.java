@@ -40,12 +40,12 @@ public class LoginFormController {
 
     @FXML
     void btnLogInOnAction(ActionEvent event) throws Exception {
-        String username  = txtUsername.getText().trim();
+        String username = txtUsername.getText().trim();
         String password = txtPassword.getText().trim();
         User userByname = userBO.findUserByname(username);
         String userid;
         String role;
-        int x ;
+        int x;
 
         int validationCode = isValid();
         switch (validationCode) {
@@ -116,23 +116,23 @@ public class LoginFormController {
 
     @FXML
     void forgotpwonclick(MouseEvent event) throws Exception {
-        String username  = txtUsername.getText().trim();
-        if(!txtUsername.getText().isEmpty()){
-        User userByname = userBO.findUserByname(username);
-        if(userByname != null){
-        String email = userByname.getEmail();
+        String username = txtUsername.getText().trim();
+        if (!txtUsername.getText().isEmpty()) {
+            User userByname = userBO.findUserByname(username);
+            if (userByname != null) {
+                String email = userByname.getEmail();
 
-        if (true) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Password Reset");
-            alert.setHeaderText(null);
-            alert.setContentText("Password reset link has been sent to your email.");
-            alert.showAndWait();
-        }
+                if (true) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Password Reset");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Password reset link has been sent to your email.");
+                    alert.showAndWait();
+                }
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Username does not exist! Please check your username.").show();
+            }
         } else {
-            new Alert(Alert.AlertType.ERROR, "Username does not exist! Please check your username.").show();
-        }
-        }else {
             new Alert(Alert.AlertType.ERROR, "Username field is empty!give username to reset password").show();
 
         }
@@ -140,17 +140,17 @@ public class LoginFormController {
 
     @FXML
     void txtPasswordOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(TextField.PASSWORD,txtPassword);
+        Regex.setTextColor(TextField.PASSWORD, txtPassword);
     }
 
     @FXML
     void txtUsernameOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(TextField.USERNAME,txtUsername);
+        Regex.setTextColor(TextField.USERNAME, txtUsername);
     }
+
     public int isValid() {
         if (!Regex.setTextColor(TextField.USERNAME, txtUsername)) return 1;
         if (!Regex.setTextColor(TextField.PASSWORD, txtPassword)) return 2;
         return 0;
     }
-
 }

@@ -86,7 +86,6 @@ public class PaymentController implements Initializable {
     PaymentBo paymentBo = (PaymentBoImpl) BoFactory.getBoFactory().getBo(BoFactory.BoType.Payment);
     EnrollmentBo enrollmentBo = (EnrollmentBoImpl) BoFactory.getBoFactory().getBo(BoFactory.BoType.Enrollment);
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -136,8 +135,8 @@ public class PaymentController implements Initializable {
         observableList = FXCollections.observableArrayList();
         List<PaymentDTO> allPayment = paymentBo.getAllPayment();
 
-        for (PaymentDTO paymentDTO : allPayment){
-            observableList.add(new PaymentTm(paymentDTO.getId(),paymentDTO.getAmount(),paymentDTO.getEid(),paymentDTO.getDate()));
+        for (PaymentDTO paymentDTO : allPayment) {
+            observableList.add(new PaymentTm(paymentDTO.getId(), paymentDTO.getAmount(), paymentDTO.getEid(), paymentDTO.getDate()));
         }
         tblpayment.setItems(observableList);
     }
@@ -149,23 +148,23 @@ public class PaymentController implements Initializable {
         Double amount = Double.valueOf(txtamount.getText());
         LocalDate date = LocalDate.parse(txtdate.getText());
 
-
         int validationCode;
+
         if (id.isEmpty() || eid.isEmpty() || amount == null || date == null) {
             new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
             return;
-        }else {
+        } else {
             validationCode = isValid();
         }
         switch (validationCode) {
             case 1 -> new Alert(Alert.AlertType.ERROR, "Invalid amount!").show();
             default -> {
-                if (paymentBo.PaymentIdExists(id)){
+                if (paymentBo.PaymentIdExists(id)) {
                     new Alert(Alert.AlertType.ERROR, "Payment ID " + id + " already exists!").show();
                     return;
                 }
 
-                if(amount > (enrollmentBo.findEnrollmentById(eid).getRemainingfee())){
+                if (amount > (enrollmentBo.findEnrollmentById(eid).getRemainingfee())) {
                     new Alert(Alert.AlertType.ERROR, "Payment exceeds the remaining fee. Please enter a valid amount!").show();
                     return;
                 }
@@ -246,7 +245,7 @@ public class PaymentController implements Initializable {
                 filteredList.add(paymentTm);
             }
         }
-       tblpayment.setItems(filteredList);
+        tblpayment.setItems(filteredList);
     }
 
     @FXML
@@ -261,14 +260,14 @@ public class PaymentController implements Initializable {
         if (id.isEmpty() || eid.isEmpty() || amount == null || date == null) {
             new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
             return;
-        }else {
+        } else {
             validationCode = isValid();
         }
         switch (validationCode) {
             case 1 -> new Alert(Alert.AlertType.ERROR, "Invalid amount!").show();
             default -> {
 
-                if(amount > (enrollmentBo.findEnrollmentById(eid).getRemainingfee())){
+                if (amount > (enrollmentBo.findEnrollmentById(eid).getRemainingfee())) {
                     new Alert(Alert.AlertType.ERROR, "Payment exceeds the remaining fee. Please enter a valid amount!").show();
                     return;
                 }
@@ -285,7 +284,7 @@ public class PaymentController implements Initializable {
         }
     }
 
-    private void updateremainfees(String id,Double amount,Double previousamount) {
+    private void updateremainfees(String id, Double amount, Double previousamount) {
         try {
             String eid = txtenrollmentid.getValue();
 
@@ -322,8 +321,9 @@ public class PaymentController implements Initializable {
 
     @FXML
     void txtamountOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(TextField.PRICE,txtamount);
+        Regex.setTextColor(TextField.PRICE, txtamount);
     }
+
     public int isValid() {
         if (!Regex.setTextColor(TextField.PRICE, txtamount)) return 1;
         return 0;

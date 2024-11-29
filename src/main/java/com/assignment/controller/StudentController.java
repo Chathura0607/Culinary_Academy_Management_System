@@ -95,7 +95,6 @@ public class StudentController implements Initializable {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-
         setCellValueFactory();
         generateNextUserId();
     }
@@ -126,8 +125,8 @@ public class StudentController implements Initializable {
         observableList = FXCollections.observableArrayList();
         List<StudentDTO> allStudent = studentBo.getAllStudent();
 
-        for (StudentDTO studentDTO : allStudent){
-            observableList.add(new StudentTm(studentDTO.getSid(),studentDTO.getName(),studentDTO.getAddress(),studentDTO.getTel(),studentDTO.getEmail()));
+        for (StudentDTO studentDTO : allStudent) {
+            observableList.add(new StudentTm(studentDTO.getSid(), studentDTO.getName(), studentDTO.getAddress(), studentDTO.getTel(), studentDTO.getEmail()));
         }
         tblstudent.setItems(observableList);
     }
@@ -140,12 +139,12 @@ public class StudentController implements Initializable {
         String tel = txttel.getText();
         String email = txtemail.getText();
 
-
         int validationCode;
+
         if (id.isEmpty() || name.isEmpty() || address.isEmpty() || tel.isEmpty() || email.isEmpty()) {
             new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
             return;
-        }else {
+        } else {
             validationCode = isValid();
         }
         switch (validationCode) {
@@ -154,7 +153,7 @@ public class StudentController implements Initializable {
             case 3 -> new Alert(Alert.AlertType.ERROR, "Invalid address!").show();
             case 4 -> new Alert(Alert.AlertType.ERROR, "Invalid telephone number!").show();
             default -> {
-                if (studentBo.StudentIdExists(id)){
+                if (studentBo.StudentIdExists(id)) {
                     new Alert(Alert.AlertType.ERROR, "Student ID " + id + " already exists!").show();
                     return;
                 }
@@ -182,7 +181,6 @@ public class StudentController implements Initializable {
     @FXML
     void btnclearOnAction(ActionEvent event) {
         clearTextFileds();
-
     }
 
     @FXML
@@ -237,7 +235,7 @@ public class StudentController implements Initializable {
         if (ID.isEmpty() || name.isEmpty() || address.isEmpty() || tel.isEmpty() || email.isEmpty()) {
             new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
             return;
-        }else {
+        } else {
             validationCode = isValid();
         }
         switch (validationCode) {
@@ -256,6 +254,7 @@ public class StudentController implements Initializable {
             }
         }
     }
+
     public void rowOnMouseClicked(MouseEvent mouseEvent) {
         Integer index = tblstudent.getSelectionModel().getSelectedIndex();
         if (index <= -1) {
@@ -268,35 +267,35 @@ public class StudentController implements Initializable {
         txttel.setText(coltel.getCellData(index).toString());
         txtemail.setText(colemail.getCellData(index).toString());
     }
+
     @FXML
     void txtaddressOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(TextField.ADDRESS,txtaddress);
+        Regex.setTextColor(TextField.ADDRESS, txtaddress);
     }
 
     @FXML
     void txtemailOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(TextField.EMAIL,txtemail);
+        Regex.setTextColor(TextField.EMAIL, txtemail);
     }
 
     @FXML
     void txtsearchOnKeyReleased(KeyEvent event) {
-
     }
 
     @FXML
     void txtstudentidOnKeyReleased(KeyEvent event) {
-
     }
 
     @FXML
     void txtstudentnameOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(TextField.NAME,txtstudentname);
+        Regex.setTextColor(TextField.NAME, txtstudentname);
     }
 
     @FXML
     void txttelOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(TextField.TEL,txttel);
+        Regex.setTextColor(TextField.TEL, txttel);
     }
+
     public int isValid() {
         if (!Regex.setTextColor(TextField.NAME, txtstudentname)) return 1;
         if (!Regex.setTextColor(TextField.EMAIL, txtemail)) return 2;
@@ -304,5 +303,4 @@ public class StudentController implements Initializable {
         if (!Regex.setTextColor(TextField.TEL, txttel)) return 4;
         return 0;
     }
-
 }
