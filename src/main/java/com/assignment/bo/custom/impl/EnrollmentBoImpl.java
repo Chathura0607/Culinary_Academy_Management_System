@@ -80,7 +80,7 @@ public class EnrollmentBoImpl implements EnrollmentBo {
             String studentName = enrollment.getStudent() != null ? enrollment.getStudent().getName() : null;
             String courseId = enrollment.getCourse() != null ? enrollment.getCourse().getCid() : null;
             String courseName = enrollment.getCourse() != null ? enrollment.getCourse().getCoursename() : null;
-            dtos.add(new EnrollmentDTO(enrollment.getEid(),studentId,studentName,courseId,courseName,enrollment.getDate(),enrollment.getUpfrontpayment(),enrollment.getRemainingfee(),enrollment.getComment()));
+            dtos.add(new EnrollmentDTO(enrollment.getEid(), studentId, studentName, courseId, courseName, enrollment.getDate(), enrollment.getUpfrontpayment(), enrollment.getRemainingfee(), enrollment.getComment()));
         }
         return dtos;
     }
@@ -107,7 +107,7 @@ public class EnrollmentBoImpl implements EnrollmentBo {
 
     @Override
     public boolean isStudentEnrolledInCourse(String studentId, String courseId) throws Exception {
-        return enrollmentDAO.isStudentEnrolledInCourse(studentId,courseId);
+        return enrollmentDAO.isStudentEnrolledInCourse(studentId, courseId);
     }
 
     @Override
@@ -122,12 +122,11 @@ public class EnrollmentBoImpl implements EnrollmentBo {
 
     @Override
     public boolean updateRemainingFee(String enrollmentId, double newFee) throws SQLException, ClassNotFoundException {
-        return enrollmentDAO.updateRemainingFee(enrollmentId,newFee);
+        return enrollmentDAO.updateRemainingFee(enrollmentId, newFee);
     }
+
     @Override
     public int getEnrollmentCount() throws Exception {
         return enrollmentDAO.getEnrollmentCount();
     }
-
-
 }

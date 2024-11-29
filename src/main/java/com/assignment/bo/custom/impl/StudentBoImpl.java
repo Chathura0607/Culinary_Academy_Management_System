@@ -3,7 +3,6 @@ package com.assignment.bo.custom.impl;
 import com.assignment.bo.custom.StudentBo;
 import com.assignment.dao.DAOFactory;
 import com.assignment.dao.custom.StudentDAO;
-import com.assignment.dao.custom.UserDAO;
 import com.assignment.dto.StudentDTO;
 import com.assignment.entity.Student;
 
@@ -14,15 +13,15 @@ import java.util.List;
 
 public class StudentBoImpl implements StudentBo {
     StudentDAO studentDAO = (StudentDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DaoType.Student);
-    UserDAO userDAO = (UserDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DaoType.User);
+
     @Override
     public boolean saveStudent(StudentDTO dto) throws Exception {
-        return studentDAO.save(new Student(dto.getSid(),dto.getName(),dto.getAddress(),dto.getTel(),dto.getEmail()));
+        return studentDAO.save(new Student(dto.getSid(), dto.getName(), dto.getAddress(), dto.getTel(), dto.getEmail()));
     }
 
     @Override
     public boolean updateStudent(StudentDTO dto) throws Exception {
-        return studentDAO.update(new Student(dto.getSid(),dto.getName(),dto.getAddress(),dto.getTel(),dto.getEmail()));
+        return studentDAO.update(new Student(dto.getSid(), dto.getName(), dto.getAddress(), dto.getTel(), dto.getEmail()));
     }
 
     @Override
@@ -74,5 +73,4 @@ public class StudentBoImpl implements StudentBo {
     public int getStudentCount() throws Exception {
         return studentDAO.getStudentCount();
     }
-
 }
