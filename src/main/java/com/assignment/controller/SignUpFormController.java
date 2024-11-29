@@ -33,13 +33,13 @@ public class SignUpFormController implements Initializable {
     private JFXTextField txtPassword1;
 
     @FXML
-    private JFXPasswordField txtPassword2;
+    private JFXPasswordField txtPassword;
 
     @FXML
     private JFXTextField txtRePassword1;
 
     @FXML
-    private JFXPasswordField txtRePassword2;
+    private JFXPasswordField txtRePassword;
 
     @FXML
     private JFXTextField txtUserEmail;
@@ -64,7 +64,6 @@ public class SignUpFormController implements Initializable {
     }
 
     private void generateNextUserId() {
-
         String nextId = null;
         try {
             nextId = userBO.generateNewUserID();
@@ -76,25 +75,23 @@ public class SignUpFormController implements Initializable {
             throw new RuntimeException(e);
         }
         txtUserID.setText(nextId);
-
     }
 
     @FXML
     void btnSignUpOnAction(ActionEvent event) throws Exception {
         String id = txtUserID.getText();
         String name = txtUsername.getText();
-        String password = txtPassword2.getText();
-        String repassword = txtRePassword2.getText();
+        String password = txtPassword.getText();
+        String repassword = txtRePassword.getText();
         String email = txtUserEmail.getText();
         String role = (String) txtrole.getValue();
-
 
         int validationCode;
         String encryptedrePassword = PasswordEncrypt.hashPassword(repassword);
         if (id.isEmpty() || name.isEmpty() || password.isEmpty() || repassword.isEmpty() || email.isEmpty() || role == null) {
             new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
             return;
-        }else {
+        } else {
             validationCode = isValid();
         }
 
@@ -107,34 +104,36 @@ public class SignUpFormController implements Initializable {
                 if (userBO.UserIdExists(id)) {
                     new Alert(Alert.AlertType.ERROR, "User ID " + id + " already exists!").show();
                     return;
-                }else if(userBO.usernameExists(name)){
+                } else if (userBO.usernameExists(name)) {
                     new Alert(Alert.AlertType.ERROR, "User name " + name + " already exists!").show();
                     return;
                 }
-        if (PasswordVerifier.verifyPassword(password, encryptedrePassword)) {
-            if (userBO.saveUser(new UserDTO(id, name, encryptedrePassword, email,role))) {
-                clearTextFileds();
-                new Alert(Alert.AlertType.INFORMATION, "Sign-up successful! Your account has been created!!").show();
-            } else {
-                new Alert(Alert.AlertType.ERROR, "Sign-up failed! Please try again later!!").show();
-            }
-        }else {
-            new Alert(Alert.AlertType.WARNING, "Passwords do not match! Please re-enter your password!!").show();
-        }
+                if (PasswordVerifier.verifyPassword(password, encryptedrePassword)) {
+                    if (userBO.saveUser(new UserDTO(id, name, encryptedrePassword, email, role))) {
+                        clearTextFileds();
+                        new Alert(Alert.AlertType.INFORMATION, "Sign-up successful! Your account has been created!!").show();
+                    } else {
+                        new Alert(Alert.AlertType.ERROR, "Sign-up failed! Please try again later!!").show();
+                    }
+                } else {
+                    new Alert(Alert.AlertType.WARNING, "Passwords do not match! Please re-enter your password!!").show();
+                }
             }
         }
     }
+
     private void clearTextFileds() {
         txtUserID.clear();
         txtUserEmail.clear();
         txtUsername.clear();
-        txtPassword2.clear();
+        txtPassword.clear();
         txtPassword1.clear();
-        txtRePassword2.clear();
+        txtRePassword.clear();
         txtRePassword1.clear();
         txtrole.getSelectionModel().clearSelection();
         generateNextUserId();
     }
+
     @FXML
     void lblHaveAccountOnMouseClicked(MouseEvent event) {
         try {
@@ -147,66 +146,56 @@ public class SignUpFormController implements Initializable {
     }
 
     @FXML
-    void showPassword2OnMousePresseds(MouseEvent event) {
-        txtRePassword2.setVisible(false);
-        txtRePassword1.setText(txtRePassword2.getText());
+    void showPasswordOnMousePressed(MouseEvent event) {
+        txtRePassword.setVisible(false);
+        txtRePassword1.setText(txtRePassword.getText());
         txtRePassword1.setVisible(true);
     }
 
     @FXML
-    void showPassword2OnMouseReleased(MouseEvent event) {
-        txtRePassword2.setVisible(true);
+    void showPasswordOnMouseReleased(MouseEvent event) {
+        txtRePassword.setVisible(true);
         txtRePassword1.setVisible(false);
     }
 
     @FXML
-    void showPasswordOnMousePresseds(MouseEvent event) {
-        txtPassword2.setVisible(false);
-        txtPassword1.setText(txtPassword2.getText());
+    void showRePasswordOnMousePressed(MouseEvent event) {
+        txtPassword.setVisible(false);
+        txtPassword1.setText(txtPassword.getText());
         txtPassword1.setVisible(true);
     }
 
     @FXML
-    void showPasswordOnMouseReleased(MouseEvent event) {
-        txtPassword2.setVisible(true);
+    void showRePasswordOnMouseReleased(MouseEvent event) {
+        txtPassword.setVisible(true);
         txtPassword1.setVisible(false);
     }
 
-
-
     @FXML
-    void txtroleOnAction(ActionEvent event) {
-
-    }
-
-
-    @FXML
-    void txtPassword2OnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(TextField.PASSWORD,txtPassword2);
+    void txtPasswordOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(TextField.PASSWORD, txtPassword);
     }
 
     @FXML
-    void txtRePassword2OnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(TextField.PASSWORD,txtRePassword2);
+    void txtRePasswordOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(TextField.PASSWORD, txtRePassword);
     }
 
     @FXML
     void txtUserEmailOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(TextField.EMAIL,txtUserEmail);
+        Regex.setTextColor(TextField.EMAIL, txtUserEmail);
     }
 
     @FXML
     void txtUsernameOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(TextField.USERNAME,txtUsername);
+        Regex.setTextColor(TextField.USERNAME, txtUsername);
     }
 
     public int isValid() {
         if (!Regex.setTextColor(TextField.USERNAME, txtUsername)) return 1;
         if (!Regex.setTextColor(TextField.EMAIL, txtUserEmail)) return 2;
-        if (!Regex.setTextColor(TextField.PASSWORD, txtPassword2)) return 3;
-        if (!Regex.setTextColor(TextField.PASSWORD, txtRePassword2)) return 4;
+        if (!Regex.setTextColor(TextField.PASSWORD, txtPassword)) return 3;
+        if (!Regex.setTextColor(TextField.PASSWORD, txtRePassword)) return 4;
         return 0;
     }
-
-
 }
