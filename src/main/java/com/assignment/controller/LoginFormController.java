@@ -31,16 +31,17 @@ public class LoginFormController {
     private JFXTextField txtPassword1;
 
     @FXML
-    private JFXPasswordField txtPassword2;
+    private JFXPasswordField txtPassword;
 
     @FXML
     private JFXTextField txtUsername;
+
     UserBo userBO = (UserBoImpl) BoFactory.getBoFactory().getBo(BoFactory.BoType.User);
 
     @FXML
     void btnLogInOnAction(ActionEvent event) throws Exception {
         String username  = txtUsername.getText().trim();
-        String password = txtPassword2.getText().trim();
+        String password = txtPassword.getText().trim();
         User userByname = userBO.findUserByname(username);
         String userid;
         String role;
@@ -77,7 +78,7 @@ public class LoginFormController {
     @FXML
     void btnSignUpOnAction(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SignUpForm.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/signForm.fxml"));
             AnchorPane coursesPane = loader.load();
             loginform.getChildren().setAll(coursesPane);
         } catch (IOException e) {
@@ -87,20 +88,20 @@ public class LoginFormController {
 
     @FXML
     void showPasswordOnMousePresseds(MouseEvent event) {
-        txtPassword2.setVisible(false);
-        txtPassword1.setText(txtPassword2.getText());
+        txtPassword.setVisible(false);
+        txtPassword1.setText(txtPassword.getText());
         txtPassword1.setVisible(true);
     }
 
     @FXML
     void showPasswordOnMouseReleased(MouseEvent event) {
-        txtPassword2.setVisible(true);
+        txtPassword.setVisible(true);
         txtPassword1.setVisible(false);
     }
 
-    private void navigateToTheDashboard(int role,String userid) throws IOException {
+    private void navigateToTheDashboard(int role, String userid) throws IOException {
         loginform.getScene().getWindow().hide();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Dashboard.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/dashboardForm.fxml"));
         Parent root = loader.load();
         DashboardController dashboardController = loader.getController();
 
@@ -112,6 +113,7 @@ public class LoginFormController {
         stage.centerOnScreen();
         stage.show();
     }
+
     @FXML
     void forgotpwonclick(MouseEvent event) throws Exception {
         String username  = txtUsername.getText().trim();
@@ -137,8 +139,8 @@ public class LoginFormController {
     }
 
     @FXML
-    void txtPassword2OnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(TextField.PASSWORD,txtPassword2);
+    void txtPasswordOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(TextField.PASSWORD,txtPassword);
     }
 
     @FXML
@@ -147,7 +149,7 @@ public class LoginFormController {
     }
     public int isValid() {
         if (!Regex.setTextColor(TextField.USERNAME, txtUsername)) return 1;
-        if (!Regex.setTextColor(TextField.PASSWORD, txtPassword2)) return 2;
+        if (!Regex.setTextColor(TextField.PASSWORD, txtPassword)) return 2;
         return 0;
     }
 

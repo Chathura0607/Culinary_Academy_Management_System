@@ -151,7 +151,7 @@ public class DashboardController implements Initializable {
     @FXML
     void btncoursesOnAction(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Course.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/courseForm.fxml"));
             AnchorPane coursesPane = loader.load();
             mainform.getChildren().setAll(coursesPane);
         } catch (IOException e) {
@@ -172,7 +172,7 @@ public class DashboardController implements Initializable {
     @FXML
     void btnenrollmentOnAction(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Enrollment.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/enrollmentForm.fxml"));
             AnchorPane coursesPane = loader.load();
             mainform.getChildren().setAll(coursesPane);
         } catch (IOException e) {
@@ -183,7 +183,7 @@ public class DashboardController implements Initializable {
     @FXML
     void btnlogoutOnAction(ActionEvent event) throws IOException {
         mainform.getScene().getWindow().hide();
-        Parent root = FXMLLoader.load(getClass().getResource("/view/LoginForm.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/loginForm.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.centerOnScreen();
@@ -193,7 +193,7 @@ public class DashboardController implements Initializable {
     @FXML
     void btnpaymentsOnAction(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Payment.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/paymentForm.fxml"));
             AnchorPane coursesPane = loader.load();
             mainform.getChildren().setAll(coursesPane);
         } catch (IOException e) {
@@ -204,7 +204,7 @@ public class DashboardController implements Initializable {
     @FXML
     void btnseeprofileOnAction(ActionEvent event){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Profile.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/profileForm.fxml"));
             AnchorPane profilePane = loader.load();
             mainform.getChildren().setAll(profilePane);
             ProfileController profileController = loader.getController();
@@ -217,7 +217,7 @@ public class DashboardController implements Initializable {
     @FXML
     void btnstudentOnAction(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Student.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/studentForm.fxml"));
             AnchorPane coursesPane = loader.load();
             mainform.getChildren().setAll(coursesPane);
         } catch (IOException e) {
@@ -228,7 +228,7 @@ public class DashboardController implements Initializable {
     @FXML
     void btnuserOnAction(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/User.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/userForm.fxml"));
             AnchorPane coursesPane = loader.load();
             mainform.getChildren().setAll(coursesPane);
         } catch (IOException e) {
