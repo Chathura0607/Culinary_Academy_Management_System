@@ -19,7 +19,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
-public class ProfileController{
+public class ProfileController {
 
     @FXML
     private JFXButton btnchange;
@@ -56,6 +56,7 @@ public class ProfileController{
     UserBo userBO = (UserBoImpl) BoFactory.getBoFactory().getBo(BoFactory.BoType.User);
     private String userid;
     User userById;
+
     public void setUserid(String userid) {
         this.userid = userid;
         setdetails();
@@ -68,7 +69,7 @@ public class ProfileController{
         }
 
         try {
-             userById = userBO.findUserById(userid);
+            userById = userBO.findUserById(userid);
 
             if (userById != null) {
                 txtuserid.setText(userid);
@@ -86,13 +87,13 @@ public class ProfileController{
 
     @FXML
     void btnchangeOnAction(ActionEvent event) throws Exception {
-            String password = txtpassword1.getText();
-            String newPassword = txtnewpassword1.getText();
+        String password = txtpassword1.getText();
+        String newPassword = txtnewpassword1.getText();
         int validationCode;
         if (password.isEmpty() || newPassword.isEmpty()) {
             new Alert(Alert.AlertType.WARNING, "Please fill in all fields!").show();
             return;
-        }else {
+        } else {
             validationCode = isValid();
         }
         switch (validationCode) {
@@ -115,8 +116,8 @@ public class ProfileController{
 
     @FXML
     void btnclearOnAction(ActionEvent event) {
-         txtnewpassword1.clear();
-         txtpassword1.clear();
+        txtnewpassword1.clear();
+        txtpassword1.clear();
     }
 
     @FXML
@@ -144,19 +145,20 @@ public class ProfileController{
         txtnewpassword1.setVisible(true);
         txtnewpassword.setVisible(false);
     }
+
     @FXML
     void txtnewpassword1OnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(TextField.PASSWORD,txtnewpassword1);
+        Regex.setTextColor(TextField.PASSWORD, txtnewpassword1);
     }
 
     @FXML
     void txtpassword1OnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(TextField.PASSWORD,txtpassword1);
+        Regex.setTextColor(TextField.PASSWORD, txtpassword1);
     }
+
     public int isValid() {
         if (!Regex.setTextColor(TextField.PASSWORD, txtpassword1)) return 1;
         if (!Regex.setTextColor(TextField.PASSWORD, txtnewpassword1)) return 2;
         return 0;
     }
-
 }

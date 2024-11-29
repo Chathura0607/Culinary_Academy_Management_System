@@ -6,92 +6,89 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="courseform" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.assignment.controller.CourseController">
+<AnchorPane fx:id="courseform" prefHeight="700.0" prefWidth="975.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.assignment.controller.CourseController">
    <children>
-      <ImageView fitHeight="700.0" fitWidth="1200.0" layoutY="1.0" pickOnBounds="true" smooth="false" style="-fx-opacity: 0.7;">
+      <ImageView fitHeight="700.0" fitWidth="975.0" layoutY="1.0" pickOnBounds="true" smooth="false" style="-fx-opacity: 0.7;">
          <image>
-            <Image url="@../assest/dashboard.jpg" />
+            <Image url="@../assest/rb_43060.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="48.0" layoutY="121.0" prefHeight="200.0" prefWidth="1000.0" style="-fx-background-color: rgba(0,0,0,0.5);">
-         <children>
-            <JFXButton fx:id="btnaddcourse" layoutX="514.0" layoutY="90.0" onAction="#btnaddcourseOnAction" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #69d9f5;" text="Add  ➕">
-               <font>
-                  <Font name="Comic Sans MS" size="13.0" />
-               </font>
-            </JFXButton>
-         </children></AnchorPane>
-      <Label layoutX="27.0" layoutY="28.0" text="Course Management ‍" textFill="WHITE">
+      <Label layoutX="16.0" layoutY="14.0" text="Course Management ‍" textFill="WHITE" underline="true">
          <font>
-            <Font name="Comic Sans MS" size="32.0" />
+            <Font name="Times New Roman" size="32.0" />
          </font>
       </Label>
-      <Label layoutX="50.0" layoutY="137.0" text="Course Id :" textFill="WHITE">
-         <font>
-            <Font name="Comic Sans MS" size="18.0" />
-         </font>
-      </Label>
-      <JFXTextField fx:id="txtscourseid" editable="false" layoutX="194.0" layoutY="132.0" onKeyReleased="#txtscourseidOnKeyReleased" prefHeight="26.0" prefWidth="218.0" style="-fx-text-fill: white;">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font></JFXTextField>
-      <Label layoutX="509.0" layoutY="139.0" text="Course Name :" textFill="WHITE">
-         <font>
-            <Font name="Comic Sans MS" size="18.0" />
-         </font>
-      </Label>
-      <JFXTextField fx:id="txtcoursename" layoutX="657.0" layoutY="134.0" onKeyReleased="#txtcoursenameOnKeyReleased" prefHeight="26.0" prefWidth="282.0" style="-fx-text-fill: white;">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font></JFXTextField>
-      <Label layoutX="1069.0" layoutY="136.0" text="Duration : " textFill="WHITE">
-         <font>
-            <Font name="Comic Sans MS" size="18.0" />
-         </font>
-      </Label>
-      <JFXTextField fx:id="txtduration" layoutX="1162.0" layoutY="132.0" onKeyReleased="#txtdurationOnKeyReleased" prefHeight="26.0" prefWidth="282.0" style="-fx-text-fill: white;">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font></JFXTextField>
-      <Label layoutX="55.0" layoutY="225.0" text="Fees : " textFill="WHITE">
-         <font>
-            <Font name="Comic Sans MS" size="18.0" />
-         </font>
-      </Label>
-      <JFXTextField fx:id="txtfees" layoutX="148.0" layoutY="221.0" onKeyReleased="#txtfeesOnKeyReleased" prefHeight="26.0" prefWidth="281.0" style="-fx-text-fill: white;">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font></JFXTextField>
-      <TableView fx:id="tblcourse" layoutX="56.0" layoutY="385.0" onMouseClicked="#rowOnMouseClicked" prefHeight="295.0" prefWidth="1079.0">
+      <TableView fx:id="tblcourse" layoutX="88.0" layoutY="435.0" onMouseClicked="#rowOnMouseClicked" prefHeight="250.0" prefWidth="800.0">
          <columns>
-            <TableColumn fx:id="colcourseid" prefWidth="196.0" text="Course Id" />
-            <TableColumn fx:id="colcoursename" minWidth="0.0" prefWidth="274.4000244140625" text="Course Name" />
-            <TableColumn fx:id="colduration" minWidth="0.0" prefWidth="337.5999755859375" text="Duration" />
-            <TableColumn fx:id="colfees" minWidth="0.0" prefWidth="272.0" text="Fees" />
+            <TableColumn fx:id="colcourseid" prefWidth="175.0" text="Course Id" />
+            <TableColumn fx:id="colcoursename" minWidth="0.0" prefWidth="275.0" text="Course Name" />
+            <TableColumn fx:id="colduration" minWidth="0.0" prefWidth="275.0" text="Duration" />
+            <TableColumn fx:id="colfees" minWidth="0.0" prefWidth="250.0" text="Fees" />
          </columns>
       </TableView>
-      <JFXTextField fx:id="txtsearch" layoutX="938.0" layoutY="344.0" prefHeight="26.0" prefWidth="282.0" style="-fx-text-fill: white;">
+      <JFXTextField fx:id="txtsearch" layoutX="102.0" layoutY="377.0" prefHeight="25.0" prefWidth="200.0" style="-fx-text-fill: white;">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="Times New Roman" size="15.0" />
          </font></JFXTextField>
-      <JFXButton fx:id="btnsearchcourse" layoutX="1233.0" layoutY="343.0" onAction="#btnsearchcourseOnAction" prefHeight="26.0" prefWidth="87.0" style="-fx-background-color: yellow;" text="Search 🔍">
+      <JFXButton fx:id="btnsearchcourse" layoutX="393.0" layoutY="374.0" onAction="#btnsearchcourseOnAction" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: yellow;" text="Search 🔍">
          <font>
-            <Font name="Comic Sans MS" size="13.0" />
+            <Font name="Times New Roman" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="btnclear" layoutX="855.0" layoutY="214.0" onAction="#btnclearOnAction" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #faa302;" text="Clear ✨">
+      <JFXButton fx:id="btndelete" layoutX="551.0" layoutY="305.0" onAction="#btndeleteOnAction" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: red;" text="Delete 🗑">
          <font>
-            <Font name="Comic Sans MS" size="13.0" />
+            <Font name="Times New Roman" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="btndelete" layoutX="664.0" layoutY="214.0" onAction="#btndeleteOnAction" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #fc6060;" text="Delete 🗑">
+      <JFXButton fx:id="btnupdate" layoutX="667.0" layoutY="305.0" onAction="#btnupdateOnAction" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: green;" text="Update ⚙">
          <font>
-            <Font name="Comic Sans MS" size="13.0" />
+            <Font name="Times New Roman" size="13.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="btnupdate" layoutX="754.0" layoutY="214.0" onAction="#btnupdateOnAction" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #89f768;" text="Update ⚙">
+      <Label layoutX="99.0" layoutY="93.0" text="Course Id :" textFill="WHITE">
          <font>
-            <Font name="Comic Sans MS" size="13.0" />
+            <Font name="Times New Roman" size="18.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtscourseid" editable="false" layoutX="99.0" layoutY="132.0" onKeyReleased="#txtscourseidOnKeyReleased" prefHeight="25.0" prefWidth="200.0" style="-fx-text-fill: white;">
+         <font>
+            <Font name="Times New Roman" size="15.0" />
+         </font></JFXTextField>
+      <Label layoutX="102.0" layoutY="192.0" text="Fees : " textFill="WHITE">
+         <font>
+            <Font name="Times New Roman" size="18.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtfees" layoutX="102.0" layoutY="229.0" onKeyReleased="#txtfeesOnKeyReleased" prefHeight="25.0" prefWidth="200.0" style="-fx-text-fill: white;">
+         <font>
+            <Font name="Times New Roman" size="15.0" />
+         </font></JFXTextField>
+      <Label layoutX="383.0" layoutY="93.0" text="Course Name :" textFill="WHITE">
+         <font>
+            <Font name="Times New Roman" size="18.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtcoursename" layoutX="383.0" layoutY="132.0" onKeyReleased="#txtcoursenameOnKeyReleased" prefHeight="25.0" prefWidth="200.0" style="-fx-text-fill: white;">
+         <font>
+            <Font name="Times New Roman" size="15.0" />
+         </font></JFXTextField>
+      <Label layoutX="677.0" layoutY="93.0" text="Duration : " textFill="WHITE">
+         <font>
+            <Font name="Times New Roman" size="18.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtduration" layoutX="677.0" layoutY="132.0" onKeyReleased="#txtdurationOnKeyReleased" prefHeight="25.0" prefWidth="200.0" style="-fx-text-fill: white;">
+         <font>
+            <Font name="Times New Roman" size="15.0" />
+         </font></JFXTextField>
+      <JFXButton fx:id="btnclear" layoutX="781.0" layoutY="305.0" onAction="#btnclearOnAction" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: orange;" text="Clear ✨">
+         <font>
+            <Font name="Times New Roman" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnaddcourse" layoutX="435.0" layoutY="305.0" onAction="#btnaddcourseOnAction" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: blue;" text="Add  ➕">
+         <font>
+            <Font name="Times New Roman" size="13.0" />
          </font>
       </JFXButton>
    </children>

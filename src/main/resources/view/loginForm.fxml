@@ -14,7 +14,7 @@
             <Image url="@../assest/30138297_4246.jpg" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="651.0" layoutY="50.0" prefHeight="600.0" prefWidth="500.0" style="-fx-background-color: black;" styleClass="box" stylesheets="@../style/styel.css">
+      <AnchorPane layoutX="651.0" layoutY="50.0" prefHeight="600.0" prefWidth="500.0" style="-fx-background-color: black;" styleClass="box" stylesheets="@../style/style.css">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -29,17 +29,17 @@
                   <Font name="Times New Roman" size="13.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="txtUsername" layoutX="108.0" layoutY="207.0" onKeyReleased="#txtUsernameOnKeyReleased" prefHeight="35.0" prefWidth="250.0" styleClass="usernamePassword" stylesheets="@../style/styel.css">
+            <JFXTextField fx:id="txtUsername" layoutX="108.0" layoutY="207.0" onKeyReleased="#txtUsernameOnKeyReleased" prefHeight="35.0" prefWidth="250.0" styleClass="usernamePassword" stylesheets="@../style/style.css">
                <font>
                   <Font name="Times New Roman" size="17.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="txtPassword1" focusColor="WHITE" layoutX="108.0" layoutY="293.0" prefHeight="35.0" prefWidth="250.0" styleClass="usernamePassword" stylesheets="@../style/styel.css" unFocusColor="WHITE">
+            <JFXTextField fx:id="txtPassword1" focusColor="WHITE" layoutX="108.0" layoutY="293.0" prefHeight="35.0" prefWidth="250.0" styleClass="usernamePassword" stylesheets="@../style/style.css" unFocusColor="WHITE">
                <font>
                   <Font name="Times New Roman" size="17.0" />
                </font>
             </JFXTextField>
-            <JFXPasswordField fx:id="txtPassword" layoutX="108.0" layoutY="293.0" onKeyReleased="#txtPasswordOnKeyReleased" prefHeight="35.0" prefWidth="250.0" styleClass="usernamePassword" stylesheets="@../style/styel.css">
+            <JFXPasswordField fx:id="txtPassword" layoutX="108.0" layoutY="293.0" onKeyReleased="#txtPasswordOnKeyReleased" prefHeight="35.0" prefWidth="250.0" styleClass="usernamePassword" stylesheets="@../style/style.css">
                <font>
                   <Font name="Times New Roman" size="17.0" />
                </font>

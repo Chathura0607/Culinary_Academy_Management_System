@@ -46,7 +46,7 @@
             </Label>
             <Label layoutX="109.0" layoutY="384.0" text="Email" textFill="WHITE">
                <font>
-                  <Font name="Comic Sans MS" size="13.0" />
+                  <Font name="Times New Roman" size="13.0" />
                </font>
             </Label>
             <Label layoutX="108.0" layoutY="455.0" text="Role" textFill="WHITE">

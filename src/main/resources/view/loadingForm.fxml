@@ -6,21 +6,40 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="lodingform" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.assignment.controller.LoadingFormController">
+<AnchorPane fx:id="lodingform" prefHeight="700.0" prefWidth="975.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.assignment.controller.LoadingFormController">
    <children>
-      <ImageView fitHeight="523.0" fitWidth="418.0" layoutX="33.0" layoutY="32.0" pickOnBounds="true">
-         <image>
-            <Image url="@../assest/lodingpageimage.jpg" />
-         </image>
-      </ImageView>
-      <Text fill="#ffd103" layoutX="506.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to" textAlignment="CENTER" wrappingWidth="320.800048828125">
+      <Text fill="#ffd103" layoutX="606.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" textAlignment="CENTER" wrappingWidth="320.800048828125">
          <font>
-            <Font name="Comic Sans MS Bold" size="51.0" />
+            <Font name="Times New Roman Bold" size="51.0" />
          </font>
       </Text>
-      <Text fill="#ffd103" layoutX="506.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The System" textAlignment="CENTER" wrappingWidth="320.800048828125">
+      <Text fill="#ffd103" layoutX="606.0" layoutY="475.0" strokeType="OUTSIDE" strokeWidth="0.0" text="System" textAlignment="CENTER" wrappingWidth="320.800048828125">
          <font>
-            <Font name="Comic Sans MS Bold" size="51.0" />
+            <Font name="Times New Roman Bold" size="51.0" />
+         </font>
+      </Text>
+      <AnchorPane layoutX="31.0" layoutY="50.0" prefHeight="600.0" prefWidth="500.0" styleClass="box" stylesheets="@../style/style.css">
+         <children>
+            <ImageView fitHeight="600.0" fitWidth="500.0" layoutX="13.0" layoutY="14.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../assest/loading.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <Text fill="#ffd103" layoutX="606.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The" textAlignment="CENTER" wrappingWidth="320.800048828125">
+         <font>
+            <Font name="Times New Roman Bold" size="51.0" />
+         </font>
+      </Text>
+      <Text fill="#ffd103" layoutX="922.0" layoutY="677.0" strokeType="OUTSIDE" strokeWidth="0.0" text="v1.0.0" textAlignment="CENTER" wrappingWidth="38.40008544921875">
+         <font>
+            <Font name="Times New Roman Bold" size="10.0" />
+         </font>
+      </Text>
+      <Text fill="#ffd103" layoutX="738.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="to" textAlignment="CENTER" wrappingWidth="56.800048828125">
+         <font>
+            <Font name="Times New Roman Bold" size="51.0" />
          </font>
       </Text>
    </children>
