@@ -17,12 +17,12 @@ public class UserBoImpl implements UserBo {
 
     @Override
     public boolean saveUser(UserDTO dto) throws Exception {
-        return userDAO.save(new User(dto.getUserid(),dto.getUsername(),dto.getPassword(),dto.getEmail(),dto.getRole()));
+        return userDAO.save(new User(dto.getUserid(), dto.getUsername(), dto.getPassword(), dto.getEmail(), dto.getRole()));
     }
 
     @Override
     public boolean updateUser(UserDTO dto) throws Exception {
-        return userDAO.update(new User(dto.getUserid(),dto.getUsername(),dto.getPassword(),dto.getEmail(),dto.getRole()));
+        return userDAO.update(new User(dto.getUserid(), dto.getUsername(), dto.getPassword(), dto.getEmail(), dto.getRole()));
     }
 
     @Override
@@ -35,7 +35,7 @@ public class UserBoImpl implements UserBo {
         List<User> users = userDAO.getAll();
         List<UserDTO> dtos = new ArrayList<>();
         for (User user : users) {
-            dtos.add(new UserDTO(user.getUserid(),user.getUsername(),user.getPassword(),user.getEmail(),user.getRole()));
+            dtos.add(new UserDTO(user.getUserid(), user.getUsername(), user.getPassword(), user.getEmail(), user.getRole()));
         }
         return dtos;
     }
