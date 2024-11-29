@@ -1,5 +1,6 @@
 package com.assignment.config;
 
+import com.assignment.entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -24,8 +25,15 @@ public class FactoryConfiguration {
             throw new RuntimeException("Failed to load hibernate properties", e);
         }
 
+        // Set properties and add annotated classes
         configuration.setProperties(properties);
+        configuration.addAnnotatedClass(User.class);
+        configuration.addAnnotatedClass(Student.class);
+        configuration.addAnnotatedClass(Course.class);
+        configuration.addAnnotatedClass(Enrollment.class);
+        configuration.addAnnotatedClass(Payment.class);
 
+        // Build the session factory
         sessionFactory = configuration.buildSessionFactory();
     }
 

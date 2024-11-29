@@ -103,6 +103,7 @@
 
                         <id>default-cli</id>
                         <configuration>
+                            <mainClass>com.assignment.culinary_accademy/com.assignment.culinary_accademyMain</mainClass>
                             <mainClass>lk.ijse.orm_coursework/lk.ijse.orm_coursework.Main</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
